@@ -40,12 +40,12 @@ jobs:
 
       - name: Debug List files in the target folder
         run: |
-          echo "Listing files in $GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert:"
-          ls -alh "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert"
+          echo "Listing files in $GITHUB_WORKSPACE/DDLs:"
+          ls -alh "$GITHUB_WORKSPACE/DDLs"
 
       - name: Remove BOM from SQL files
         run: |
-          find "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert" -name "*.sql" -exec sed -i '1s/^\xEF\xBB\xBF//' {} \;
+          find "$GITHUB_WORKSPACE/DDLs" -name "*.sql" -exec sed -i '1s/^\xEF\xBB\xBF//' {} \;
 
 
       - name: Run schemachange
@@ -53,6 +53,6 @@ jobs:
           schemachange deploy \
             --config-folder ~/.snowflake \
             --connection-name default \
-            -f "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert" \
+            -f "$GITHUB_WORKSPACE/DDLs" \
             --change-history-table DEV.SNOWCONVERT.CHANGE_HISTORY \
             --create-change-history-table
