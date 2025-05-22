@@ -432,7 +432,6 @@ CREATE OR REPLACE TABLE DEV.SNOWCONVERT.DimProduct
      SpanishProductName VARCHAR(50) NOT NULL,
      FrenchProductName VARCHAR(50) NOT NULL,
      StandardCost NUMBER(18,4),
-     FinishedGoodsFlag BYTEINT
      Color VARCHAR(15) NOT NULL,
      SafetyStockLevel SMALLINT,
      ReorderPoint SMALLINT,
